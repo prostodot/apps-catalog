@@ -1,0 +1,31 @@
+{
+  "id": "prostoNotes",
+  "kind": "application",
+  "title": "Заметки",
+  "inputs": {},
+  "events": {},
+  "sources": {
+    "notes": { "adapter": "local" }
+  },
+  "actions": {
+    "readNotes": {
+      "steps": [{ "type": "load", "source": "notes", "target": "records" }]
+    },
+    "addNote": {
+      "steps": [{ "type": "save", "source": "notes", "value": { "$ref": "event.values" } }]
+    }
+  },
+  "collections": {
+    "notes": {
+      "title": "Мои заметки",
+      "load": "readNotes",
+      "value": { "$ref": "data.records" },
+      "fields": [
+        { "name": "text", "title": "Текст", "type": "string", "required": true }
+      ],
+      "operations": {
+        "create": { "action": "addNote", "fields": ["text"] }
+      }
+    }
+  }
+}
