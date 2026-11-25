@@ -1,0 +1,1560 @@
+{
+  "id": "jsonPlaceholderDemo",
+  "kind": "application",
+  "title": "JSONPlaceholder (демо)",
+  "inputs": {},
+  "events": {},
+  "sources": {
+    "posts": {
+      "adapter": "http",
+      "endpoint": "https://jsonplaceholder.typicode.com/posts"
+    },
+    "postsPage": {
+      "adapter": "http",
+      "endpoint": "https://jsonplaceholder.typicode.com/posts",
+      "responseHeaders": [
+        "x-total-count"
+      ]
+    },
+    "comments": {
+      "adapter": "http",
+      "endpoint": "https://jsonplaceholder.typicode.com/comments"
+    },
+    "commentsPage": {
+      "adapter": "http",
+      "endpoint": "https://jsonplaceholder.typicode.com/comments",
+      "responseHeaders": [
+        "x-total-count"
+      ]
+    },
+    "albums": {
+      "adapter": "http",
+      "endpoint": "https://jsonplaceholder.typicode.com/albums"
+    },
+    "albumsPage": {
+      "adapter": "http",
+      "endpoint": "https://jsonplaceholder.typicode.com/albums",
+      "responseHeaders": [
+        "x-total-count"
+      ]
+    },
+    "photos": {
+      "adapter": "http",
+      "endpoint": "https://jsonplaceholder.typicode.com/photos"
+    },
+    "photosPage": {
+      "adapter": "http",
+      "endpoint": "https://jsonplaceholder.typicode.com/photos",
+      "responseHeaders": [
+        "x-total-count"
+      ]
+    },
+    "todos": {
+      "adapter": "http",
+      "endpoint": "https://jsonplaceholder.typicode.com/todos"
+    },
+    "todosPage": {
+      "adapter": "http",
+      "endpoint": "https://jsonplaceholder.typicode.com/todos",
+      "responseHeaders": [
+        "x-total-count"
+      ]
+    },
+    "users": {
+      "adapter": "http",
+      "endpoint": "https://jsonplaceholder.typicode.com/users"
+    },
+    "usersPage": {
+      "adapter": "http",
+      "endpoint": "https://jsonplaceholder.typicode.com/users",
+      "responseHeaders": [
+        "x-total-count"
+      ]
+    }
+  },
+  "actions": {
+    "loadPosts": {
+      "steps": [
+        {
+          "type": "load",
+          "source": "postsPage",
+          "target": "posts",
+          "keepPrevious": true,
+          "params": {
+            "_page": {
+              "$ref": "event.page"
+            },
+            "_limit": {
+              "$ref": "event.pageSize"
+            },
+            "q": {
+              "$ref": "event.search"
+            },
+            "_sort": {
+              "$ref": "event.sort.field"
+            },
+            "_order": {
+              "$ref": "event.sort.direction"
+            },
+            "id_gte": {
+              "$ref": "event.filters.id.min"
+            },
+            "id_lte": {
+              "$ref": "event.filters.id.max"
+            },
+            "userId_gte": {
+              "$ref": "event.filters.userId.min"
+            },
+            "userId_lte": {
+              "$ref": "event.filters.userId.max"
+            },
+            "title_like": {
+              "$ref": "event.filters.title"
+            },
+            "body_like": {
+              "$ref": "event.filters.body"
+            }
+          }
+        }
+      ]
+    },
+    "loadComments": {
+      "steps": [
+        {
+          "type": "load",
+          "source": "commentsPage",
+          "target": "comments",
+          "keepPrevious": true,
+          "params": {
+            "_page": {
+              "$ref": "event.page"
+            },
+            "_limit": {
+              "$ref": "event.pageSize"
+            },
+            "q": {
+              "$ref": "event.search"
+            },
+            "_sort": {
+              "$ref": "event.sort.field"
+            },
+            "_order": {
+              "$ref": "event.sort.direction"
+            },
+            "id_gte": {
+              "$ref": "event.filters.id.min"
+            },
+            "id_lte": {
+              "$ref": "event.filters.id.max"
+            },
+            "postId_gte": {
+              "$ref": "event.filters.postId.min"
+            },
+            "postId_lte": {
+              "$ref": "event.filters.postId.max"
+            },
+            "name_like": {
+              "$ref": "event.filters.name"
+            },
+            "email_like": {
+              "$ref": "event.filters.email"
+            },
+            "body_like": {
+              "$ref": "event.filters.body"
+            }
+          }
+        }
+      ]
+    },
+    "loadAlbumAuthors": {
+      "steps": [
+        {
+          "type": "load",
+          "source": "users",
+          "target": "albumAuthors"
+        }
+      ]
+    },
+    "loadAlbums": {
+      "steps": [
+        {
+          "type": "load",
+          "source": "albumsPage",
+          "target": "albums",
+          "keepPrevious": true,
+          "params": {
+            "_page": {
+              "$ref": "event.page"
+            },
+            "_limit": {
+              "$ref": "event.pageSize"
+            },
+            "q": {
+              "$ref": "event.search"
+            },
+            "_sort": {
+              "$ref": "event.sort.field"
+            },
+            "_order": {
+              "$ref": "event.sort.direction"
+            },
+            "id_gte": {
+              "$ref": "event.filters.id.min"
+            },
+            "id_lte": {
+              "$ref": "event.filters.id.max"
+            },
+            "userId_gte": {
+              "$ref": "event.filters.userId.min"
+            },
+            "userId_lte": {
+              "$ref": "event.filters.userId.max"
+            },
+            "title_like": {
+              "$ref": "event.filters.title"
+            }
+          }
+        }
+      ]
+    },
+    "loadPhotos": {
+      "steps": [
+        {
+          "type": "load",
+          "source": "photosPage",
+          "target": "photos",
+          "keepPrevious": true,
+          "params": {
+            "_page": {
+              "$ref": "event.page"
+            },
+            "_limit": {
+              "$ref": "event.pageSize"
+            },
+            "q": {
+              "$ref": "event.search"
+            },
+            "_sort": {
+              "$ref": "event.sort.field"
+            },
+            "_order": {
+              "$ref": "event.sort.direction"
+            },
+            "id_gte": {
+              "$ref": "event.filters.id.min"
+            },
+            "id_lte": {
+              "$ref": "event.filters.id.max"
+            },
+            "albumId_gte": {
+              "$ref": "event.filters.albumId.min"
+            },
+            "albumId_lte": {
+              "$ref": "event.filters.albumId.max"
+            },
+            "title_like": {
+              "$ref": "event.filters.title"
+            },
+            "url_like": {
+              "$ref": "event.filters.url"
+            },
+            "thumbnailUrl_like": {
+              "$ref": "event.filters.thumbnailUrl"
+            }
+          }
+        }
+      ]
+    },
+    "loadTodos": {
+      "steps": [
+        {
+          "type": "load",
+          "source": "todosPage",
+          "target": "todos",
+          "keepPrevious": true,
+          "params": {
+            "_page": {
+              "$ref": "event.page"
+            },
+            "_limit": {
+              "$ref": "event.pageSize"
+            },
+            "q": {
+              "$ref": "event.search"
+            },
+            "_sort": {
+              "$ref": "event.sort.field"
+            },
+            "_order": {
+              "$ref": "event.sort.direction"
+            },
+            "id_gte": {
+              "$ref": "event.filters.id.min"
+            },
+            "id_lte": {
+              "$ref": "event.filters.id.max"
+            },
+            "userId_gte": {
+              "$ref": "event.filters.userId.min"
+            },
+            "userId_lte": {
+              "$ref": "event.filters.userId.max"
+            },
+            "title_like": {
+              "$ref": "event.filters.title"
+            },
+            "completed": {
+              "$ref": "event.filters.completed"
+            }
+          }
+        }
+      ]
+    },
+    "loadUsers": {
+      "steps": [
+        {
+          "type": "load",
+          "source": "usersPage",
+          "target": "users",
+          "keepPrevious": true,
+          "params": {
+            "_page": {
+              "$ref": "event.page"
+            },
+            "_limit": {
+              "$ref": "event.pageSize"
+            },
+            "q": {
+              "$ref": "event.search"
+            },
+            "_sort": {
+              "$ref": "event.sort.field"
+            },
+            "_order": {
+              "$ref": "event.sort.direction"
+            },
+            "id_gte": {
+              "$ref": "event.filters.id.min"
+            },
+            "id_lte": {
+              "$ref": "event.filters.id.max"
+            },
+            "name_like": {
+              "$ref": "event.filters.name"
+            },
+            "username_like": {
+              "$ref": "event.filters.username"
+            },
+            "email_like": {
+              "$ref": "event.filters.email"
+            },
+            "phone_like": {
+              "$ref": "event.filters.phone"
+            },
+            "website_like": {
+              "$ref": "event.filters.website"
+            }
+          }
+        }
+      ]
+    },
+    "loadPostComments": {
+      "steps": [
+        {
+          "type": "load",
+          "source": "commentsPage",
+          "target": "postComments",
+          "keepPrevious": true,
+          "params": {
+            "_page": {
+              "$ref": "event.page"
+            },
+            "_limit": {
+              "$ref": "event.pageSize"
+            },
+            "q": {
+              "$ref": "event.search"
+            },
+            "_sort": {
+              "$ref": "event.sort.field"
+            },
+            "_order": {
+              "$ref": "event.sort.direction"
+            },
+            "postId": {
+              "$ref": "route.id"
+            },
+            "id_gte": {
+              "$ref": "event.filters.id.min"
+            },
+            "id_lte": {
+              "$ref": "event.filters.id.max"
+            },
+            "postId_gte": {
+              "$ref": "event.filters.postId.min"
+            },
+            "postId_lte": {
+              "$ref": "event.filters.postId.max"
+            },
+            "name_like": {
+              "$ref": "event.filters.name"
+            },
+            "email_like": {
+              "$ref": "event.filters.email"
+            },
+            "body_like": {
+              "$ref": "event.filters.body"
+            }
+          }
+        }
+      ]
+    },
+    "loadAlbumPhotos": {
+      "steps": [
+        {
+          "type": "load",
+          "source": "photosPage",
+          "target": "albumPhotos",
+          "keepPrevious": true,
+          "params": {
+            "_page": {
+              "$ref": "event.page"
+            },
+            "_limit": {
+              "$ref": "event.pageSize"
+            },
+            "q": {
+              "$ref": "event.search"
+            },
+            "_sort": {
+              "$ref": "event.sort.field"
+            },
+            "_order": {
+              "$ref": "event.sort.direction"
+            },
+            "albumId": {
+              "$ref": "route.id"
+            },
+            "id_gte": {
+              "$ref": "event.filters.id.min"
+            },
+            "id_lte": {
+              "$ref": "event.filters.id.max"
+            },
+            "albumId_gte": {
+              "$ref": "event.filters.albumId.min"
+            },
+            "albumId_lte": {
+              "$ref": "event.filters.albumId.max"
+            },
+            "title_like": {
+              "$ref": "event.filters.title"
+            },
+            "url_like": {
+              "$ref": "event.filters.url"
+            },
+            "thumbnailUrl_like": {
+              "$ref": "event.filters.thumbnailUrl"
+            }
+          }
+        }
+      ]
+    },
+    "loadUserPosts": {
+      "steps": [
+        {
+          "type": "load",
+          "source": "postsPage",
+          "target": "userPosts",
+          "keepPrevious": true,
+          "params": {
+            "_page": {
+              "$ref": "event.page"
+            },
+            "_limit": {
+              "$ref": "event.pageSize"
+            },
+            "q": {
+              "$ref": "event.search"
+            },
+            "_sort": {
+              "$ref": "event.sort.field"
+            },
+            "_order": {
+              "$ref": "event.sort.direction"
+            },
+            "userId": {
+              "$ref": "route.id"
+            },
+            "id_gte": {
+              "$ref": "event.filters.id.min"
+            },
+            "id_lte": {
+              "$ref": "event.filters.id.max"
+            },
+            "userId_gte": {
+              "$ref": "event.filters.userId.min"
+            },
+            "userId_lte": {
+              "$ref": "event.filters.userId.max"
+            },
+            "title_like": {
+              "$ref": "event.filters.title"
+            },
+            "body_like": {
+              "$ref": "event.filters.body"
+            }
+          }
+        }
+      ]
+    },
+    "loadUserAlbums": {
+      "steps": [
+        {
+          "type": "load",
+          "source": "albumsPage",
+          "target": "userAlbums",
+          "keepPrevious": true,
+          "params": {
+            "_page": {
+              "$ref": "event.page"
+            },
+            "_limit": {
+              "$ref": "event.pageSize"
+            },
+            "q": {
+              "$ref": "event.search"
+            },
+            "_sort": {
+              "$ref": "event.sort.field"
+            },
+            "_order": {
+              "$ref": "event.sort.direction"
+            },
+            "userId": {
+              "$ref": "route.id"
+            },
+            "id_gte": {
+              "$ref": "event.filters.id.min"
+            },
+            "id_lte": {
+              "$ref": "event.filters.id.max"
+            },
+            "userId_gte": {
+              "$ref": "event.filters.userId.min"
+            },
+            "userId_lte": {
+              "$ref": "event.filters.userId.max"
+            },
+            "title_like": {
+              "$ref": "event.filters.title"
+            }
+          }
+        }
+      ]
+    },
+    "loadUserTodos": {
+      "steps": [
+        {
+          "type": "load",
+          "source": "todosPage",
+          "target": "userTodos",
+          "keepPrevious": true,
+          "params": {
+            "_page": {
+              "$ref": "event.page"
+            },
+            "_limit": {
+              "$ref": "event.pageSize"
+            },
+            "q": {
+              "$ref": "event.search"
+            },
+            "_sort": {
+              "$ref": "event.sort.field"
+            },
+            "_order": {
+              "$ref": "event.sort.direction"
+            },
+            "userId": {
+              "$ref": "route.id"
+            },
+            "id_gte": {
+              "$ref": "event.filters.id.min"
+            },
+            "id_lte": {
+              "$ref": "event.filters.id.max"
+            },
+            "userId_gte": {
+              "$ref": "event.filters.userId.min"
+            },
+            "userId_lte": {
+              "$ref": "event.filters.userId.max"
+            },
+            "title_like": {
+              "$ref": "event.filters.title"
+            },
+            "completed": {
+              "$ref": "event.filters.completed"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "collections": {
+    "list": {
+      "title": "Публикации",
+      "value": {
+        "$ref": "data.posts.body"
+      },
+      "fields": [
+        {
+          "name": "id",
+          "title": "ID",
+          "type": "number"
+        },
+        {
+          "name": "userId",
+          "title": "Автор",
+          "type": "number"
+        },
+        {
+          "name": "title",
+          "title": "Заголовок",
+          "type": "string",
+          "inlineEditable": true
+        },
+        {
+          "name": "body",
+          "title": "Текст",
+          "type": "string",
+          "inlineEditable": true
+        }
+      ],
+      "query": {
+        "action": "loadPosts",
+        "total": {
+          "$ref": "data.posts.headers.x-total-count"
+        },
+        "filterFields": [
+          "id",
+          "userId",
+          "title",
+          "body"
+        ],
+        "sortFields": [
+          "id",
+          "userId",
+          "title",
+          "body"
+        ],
+        "search": true
+      },
+      "key": [
+        "id"
+      ],
+      "resource": "posts",
+      "operations": {
+        "create": {
+          "request": {
+            "method": "POST",
+            "url": "https://jsonplaceholder.typicode.com/posts",
+            "body": {
+              "$ref": "event.values"
+            }
+          },
+          "fields": [
+            "userId",
+            "title",
+            "body"
+          ],
+          "schema": {
+            "type": "object",
+            "required": [
+              "userId",
+              "title",
+              "body"
+            ],
+            "properties": {
+              "title": {
+                "type": "string",
+                "minLength": 1
+              },
+              "body": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        "update": {
+          "request": {
+            "method": "PATCH",
+            "url": "https://jsonplaceholder.typicode.com/posts/{{event.record.id}}",
+            "body": {
+              "$ref": "event.changes"
+            }
+          },
+          "fields": [
+            "userId",
+            "title",
+            "body"
+          ]
+        },
+        "delete": {
+          "request": {
+            "method": "DELETE",
+            "url": "https://jsonplaceholder.typicode.com/posts/{{event.record.id}}"
+          }
+        }
+      },
+      "detail": {
+        "request": {
+          "url": "https://jsonplaceholder.typicode.com/posts/{{event.record.id}}"
+        },
+        "links": {
+          "comments": {
+            "title": "Комментарии",
+            "target": "postComments",
+            "params": {
+              "id": {
+                "$ref": "event.record.id"
+              }
+            }
+          },
+          "author": {
+            "title": "Автор публикации",
+            "target": "users",
+            "record": {
+              "id": {
+                "$ref": "event.record.userId"
+              }
+            }
+          }
+        }
+      }
+    },
+    "comments": {
+      "title": "Комментарии",
+      "value": {
+        "$ref": "data.comments.body"
+      },
+      "fields": [
+        {
+          "name": "id",
+          "title": "ID",
+          "type": "number"
+        },
+        {
+          "name": "postId",
+          "title": "Публикация",
+          "type": "number"
+        },
+        {
+          "name": "name",
+          "title": "Тема",
+          "type": "string"
+        },
+        {
+          "name": "email",
+          "title": "Email",
+          "type": "string",
+          "presentation": "email"
+        },
+        {
+          "name": "body",
+          "title": "Текст",
+          "type": "string"
+        }
+      ],
+      "query": {
+        "action": "loadComments",
+        "total": {
+          "$ref": "data.comments.headers.x-total-count"
+        },
+        "filterFields": [
+          "id",
+          "postId",
+          "name",
+          "email",
+          "body"
+        ],
+        "sortFields": [
+          "id",
+          "postId",
+          "name",
+          "email",
+          "body"
+        ],
+        "search": true
+      },
+      "key": [
+        "id"
+      ],
+      "resource": "comments",
+      "detail": {
+        "request": {
+          "url": "https://jsonplaceholder.typicode.com/comments/{{event.record.id}}"
+        },
+        "links": {
+          "post": {
+            "title": "Публикация",
+            "target": "list",
+            "record": {
+              "id": {
+                "$ref": "event.record.postId"
+              }
+            }
+          }
+        }
+      }
+    },
+    "albums": {
+      "title": "Альбомы",
+      "onEnter": "loadAlbumAuthors",
+      "value": {
+        "$ref": "data.albums.body"
+      },
+      "fields": [
+        {
+          "name": "id",
+          "title": "ID",
+          "type": "number"
+        },
+        {
+          "name": "userId",
+          "title": "Автор",
+          "type": "number",
+          "lookup": {
+            "value": {
+              "$ref": "data.albumAuthors"
+            },
+            "key": "id",
+            "label": "name"
+          },
+          "link": {
+            "target": "users",
+            "record": {
+              "id": {
+                "$ref": "event.record.userId"
+              }
+            }
+          }
+        },
+        {
+          "name": "title",
+          "title": "Название",
+          "type": "string"
+        }
+      ],
+      "query": {
+        "action": "loadAlbums",
+        "total": {
+          "$ref": "data.albums.headers.x-total-count"
+        },
+        "filterFields": [
+          "id",
+          "userId",
+          "title"
+        ],
+        "sortFields": [
+          "id",
+          "userId",
+          "title"
+        ],
+        "search": true
+      },
+      "key": [
+        "id"
+      ],
+      "resource": "albums",
+      "detail": {
+        "request": {
+          "url": "https://jsonplaceholder.typicode.com/albums/{{event.record.id}}"
+        },
+        "links": {
+          "photos": {
+            "title": "Фотографии",
+            "target": "albumPhotos",
+            "params": {
+              "id": {
+                "$ref": "event.record.id"
+              }
+            }
+          },
+          "author": {
+            "title": "Автор альбома",
+            "target": "users",
+            "record": {
+              "id": {
+                "$ref": "event.record.userId"
+              }
+            }
+          }
+        }
+      }
+    },
+    "photos": {
+      "title": "Фотографии",
+      "record": {
+        "title": "title",
+        "image": {
+          "field": "url",
+          "previewField": "thumbnailUrl",
+          "role": "content"
+        }
+      },
+      "value": {
+        "$ref": "data.photos.body"
+      },
+      "fields": [
+        {
+          "name": "id",
+          "title": "ID",
+          "type": "number"
+        },
+        {
+          "name": "albumId",
+          "title": "Альбом",
+          "type": "number"
+        },
+        {
+          "name": "title",
+          "title": "Название",
+          "type": "string"
+        },
+        {
+          "name": "url",
+          "title": "Адрес",
+          "type": "string"
+        },
+        {
+          "name": "thumbnailUrl",
+          "title": "Миниатюра",
+          "type": "string",
+          "presentation": "image"
+        }
+      ],
+      "query": {
+        "action": "loadPhotos",
+        "total": {
+          "$ref": "data.photos.headers.x-total-count"
+        },
+        "filterFields": [
+          "id",
+          "albumId",
+          "title",
+          "url",
+          "thumbnailUrl"
+        ],
+        "sortFields": [
+          "id",
+          "albumId",
+          "title",
+          "url",
+          "thumbnailUrl"
+        ],
+        "search": true
+      },
+      "key": [
+        "id"
+      ],
+      "resource": "photos",
+      "detail": {
+        "request": {
+          "url": "https://jsonplaceholder.typicode.com/photos/{{event.record.id}}"
+        },
+        "links": {
+          "album": {
+            "title": "Альбом",
+            "target": "albums",
+            "record": {
+              "id": {
+                "$ref": "event.record.albumId"
+              }
+            }
+          }
+        }
+      }
+    },
+    "todos": {
+      "title": "Задачи",
+      "value": {
+        "$ref": "data.todos.body"
+      },
+      "fields": [
+        {
+          "name": "id",
+          "title": "ID",
+          "type": "number"
+        },
+        {
+          "name": "userId",
+          "title": "Пользователь",
+          "type": "number"
+        },
+        {
+          "name": "title",
+          "title": "Название",
+          "type": "string"
+        },
+        {
+          "name": "completed",
+          "title": "Выполнена",
+          "type": "boolean"
+        }
+      ],
+      "query": {
+        "action": "loadTodos",
+        "total": {
+          "$ref": "data.todos.headers.x-total-count"
+        },
+        "filterFields": [
+          "id",
+          "userId",
+          "title",
+          "completed"
+        ],
+        "sortFields": [
+          "id",
+          "userId",
+          "title",
+          "completed"
+        ],
+        "search": true
+      },
+      "key": [
+        "id"
+      ],
+      "resource": "todos",
+      "detail": {
+        "request": {
+          "url": "https://jsonplaceholder.typicode.com/todos/{{event.record.id}}"
+        },
+        "links": {
+          "user": {
+            "title": "Пользователь",
+            "target": "users",
+            "record": {
+              "id": {
+                "$ref": "event.record.userId"
+              }
+            }
+          }
+        }
+      }
+    },
+    "users": {
+      "title": "Пользователи",
+      "value": {
+        "$ref": "data.users.body"
+      },
+      "fields": [
+        {
+          "name": "id",
+          "title": "ID",
+          "type": "number"
+        },
+        {
+          "name": "name",
+          "title": "Имя",
+          "type": "string"
+        },
+        {
+          "name": "username",
+          "title": "Логин",
+          "type": "string"
+        },
+        {
+          "name": "email",
+          "title": "Email",
+          "type": "string",
+          "presentation": "email"
+        },
+        {
+          "name": "phone",
+          "title": "Телефон",
+          "type": "string",
+          "presentation": "phone"
+        },
+        {
+          "name": "website",
+          "title": "Сайт",
+          "type": "string",
+          "presentation": "url"
+        },
+        {
+          "name": "city",
+          "title": "Город",
+          "type": "string",
+          "value": {
+            "$ref": "event.record.address.city"
+          }
+        },
+        {
+          "name": "street",
+          "title": "Улица",
+          "type": "string",
+          "value": {
+            "$ref": "event.record.address.street"
+          }
+        },
+        {
+          "name": "company",
+          "title": "Компания",
+          "type": "string",
+          "value": {
+            "$ref": "event.record.company.name"
+          }
+        }
+      ],
+      "query": {
+        "action": "loadUsers",
+        "total": {
+          "$ref": "data.users.headers.x-total-count"
+        },
+        "filterFields": [
+          "id",
+          "name",
+          "username",
+          "email",
+          "phone",
+          "website"
+        ],
+        "sortFields": [
+          "id",
+          "name",
+          "username",
+          "email",
+          "phone",
+          "website"
+        ],
+        "search": true
+      },
+      "key": [
+        "id"
+      ],
+      "resource": "users",
+      "detail": {
+        "request": {
+          "url": "https://jsonplaceholder.typicode.com/users/{{event.record.id}}"
+        },
+        "links": {
+          "posts": {
+            "title": "Публикации пользователя",
+            "target": "userPosts",
+            "params": {
+              "id": {
+                "$ref": "event.record.id"
+              }
+            }
+          },
+          "albums": {
+            "title": "Альбомы пользователя",
+            "target": "userAlbums",
+            "params": {
+              "id": {
+                "$ref": "event.record.id"
+              }
+            }
+          },
+          "todos": {
+            "title": "Задачи пользователя",
+            "target": "userTodos",
+            "params": {
+              "id": {
+                "$ref": "event.record.id"
+              }
+            }
+          }
+        }
+      }
+    },
+    "postComments": {
+      "title": "Комментарии публикации",
+      "value": {
+        "$ref": "data.postComments.body"
+      },
+      "fields": [
+        {
+          "name": "id",
+          "title": "ID",
+          "type": "number"
+        },
+        {
+          "name": "postId",
+          "title": "Публикация",
+          "type": "number"
+        },
+        {
+          "name": "name",
+          "title": "Тема",
+          "type": "string"
+        },
+        {
+          "name": "email",
+          "title": "Email",
+          "type": "string",
+          "presentation": "email"
+        },
+        {
+          "name": "body",
+          "title": "Текст",
+          "type": "string"
+        }
+      ],
+      "query": {
+        "action": "loadPostComments",
+        "total": {
+          "$ref": "data.postComments.headers.x-total-count"
+        },
+        "filterFields": [
+          "id",
+          "postId",
+          "name",
+          "email",
+          "body"
+        ],
+        "sortFields": [
+          "id",
+          "postId",
+          "name",
+          "email",
+          "body"
+        ],
+        "search": true
+      },
+      "key": [
+        "id"
+      ],
+      "resource": "comments",
+      "requiredRouteParams": [
+        "id"
+      ],
+      "detail": {
+        "request": {
+          "url": "https://jsonplaceholder.typicode.com/comments/{{event.record.id}}"
+        },
+        "links": {
+          "post": {
+            "title": "Публикация",
+            "target": "list",
+            "record": {
+              "id": {
+                "$ref": "event.record.postId"
+              }
+            }
+          }
+        }
+      }
+    },
+    "albumPhotos": {
+      "title": "Фотографии альбома",
+      "record": {
+        "title": "title",
+        "image": {
+          "field": "url",
+          "previewField": "thumbnailUrl",
+          "role": "content"
+        }
+      },
+      "value": {
+        "$ref": "data.albumPhotos.body"
+      },
+      "fields": [
+        {
+          "name": "id",
+          "title": "ID",
+          "type": "number"
+        },
+        {
+          "name": "albumId",
+          "title": "Альбом",
+          "type": "number"
+        },
+        {
+          "name": "title",
+          "title": "Название",
+          "type": "string"
+        },
+        {
+          "name": "url",
+          "title": "Адрес",
+          "type": "string"
+        },
+        {
+          "name": "thumbnailUrl",
+          "title": "Миниатюра",
+          "type": "string",
+          "presentation": "image"
+        }
+      ],
+      "query": {
+        "action": "loadAlbumPhotos",
+        "total": {
+          "$ref": "data.albumPhotos.headers.x-total-count"
+        },
+        "filterFields": [
+          "id",
+          "albumId",
+          "title",
+          "url",
+          "thumbnailUrl"
+        ],
+        "sortFields": [
+          "id",
+          "albumId",
+          "title",
+          "url",
+          "thumbnailUrl"
+        ],
+        "search": true
+      },
+      "key": [
+        "id"
+      ],
+      "resource": "photos",
+      "requiredRouteParams": [
+        "id"
+      ],
+      "detail": {
+        "request": {
+          "url": "https://jsonplaceholder.typicode.com/photos/{{event.record.id}}"
+        },
+        "links": {
+          "album": {
+            "title": "Альбом",
+            "target": "albums",
+            "record": {
+              "id": {
+                "$ref": "event.record.albumId"
+              }
+            }
+          }
+        }
+      }
+    },
+    "userPosts": {
+      "title": "Публикации пользователя",
+      "value": {
+        "$ref": "data.userPosts.body"
+      },
+      "fields": [
+        {
+          "name": "id",
+          "title": "ID",
+          "type": "number"
+        },
+        {
+          "name": "userId",
+          "title": "Автор",
+          "type": "number"
+        },
+        {
+          "name": "title",
+          "title": "Заголовок",
+          "type": "string"
+        },
+        {
+          "name": "body",
+          "title": "Текст",
+          "type": "string"
+        }
+      ],
+      "query": {
+        "action": "loadUserPosts",
+        "total": {
+          "$ref": "data.userPosts.headers.x-total-count"
+        },
+        "filterFields": [
+          "id",
+          "userId",
+          "title",
+          "body"
+        ],
+        "sortFields": [
+          "id",
+          "userId",
+          "title",
+          "body"
+        ],
+        "search": true
+      },
+      "key": [
+        "id"
+      ],
+      "resource": "posts",
+      "requiredRouteParams": [
+        "id"
+      ],
+      "detail": {
+        "request": {
+          "url": "https://jsonplaceholder.typicode.com/posts/{{event.record.id}}"
+        },
+        "links": {
+          "comments": {
+            "title": "Комментарии",
+            "target": "postComments",
+            "params": {
+              "id": {
+                "$ref": "event.record.id"
+              }
+            }
+          },
+          "author": {
+            "title": "Автор публикации",
+            "target": "users",
+            "record": {
+              "id": {
+                "$ref": "event.record.userId"
+              }
+            }
+          }
+        }
+      }
+    },
+    "userAlbums": {
+      "title": "Альбомы пользователя",
+      "value": {
+        "$ref": "data.userAlbums.body"
+      },
+      "fields": [
+        {
+          "name": "id",
+          "title": "ID",
+          "type": "number"
+        },
+        {
+          "name": "userId",
+          "title": "Автор",
+          "type": "number"
+        },
+        {
+          "name": "title",
+          "title": "Название",
+          "type": "string"
+        }
+      ],
+      "query": {
+        "action": "loadUserAlbums",
+        "total": {
+          "$ref": "data.userAlbums.headers.x-total-count"
+        },
+        "filterFields": [
+          "id",
+          "userId",
+          "title"
+        ],
+        "sortFields": [
+          "id",
+          "userId",
+          "title"
+        ],
+        "search": true
+      },
+      "key": [
+        "id"
+      ],
+      "resource": "albums",
+      "requiredRouteParams": [
+        "id"
+      ],
+      "detail": {
+        "request": {
+          "url": "https://jsonplaceholder.typicode.com/albums/{{event.record.id}}"
+        },
+        "links": {
+          "photos": {
+            "title": "Фотографии",
+            "target": "albumPhotos",
+            "params": {
+              "id": {
+                "$ref": "event.record.id"
+              }
+            }
+          },
+          "author": {
+            "title": "Автор альбома",
+            "target": "users",
+            "record": {
+              "id": {
+                "$ref": "event.record.userId"
+              }
+            }
+          }
+        }
+      }
+    },
+    "userTodos": {
+      "title": "Задачи пользователя",
+      "value": {
+        "$ref": "data.userTodos.body"
+      },
+      "fields": [
+        {
+          "name": "id",
+          "title": "ID",
+          "type": "number"
+        },
+        {
+          "name": "userId",
+          "title": "Пользователь",
+          "type": "number"
+        },
+        {
+          "name": "title",
+          "title": "Название",
+          "type": "string"
+        },
+        {
+          "name": "completed",
+          "title": "Выполнена",
+          "type": "boolean"
+        }
+      ],
+      "query": {
+        "action": "loadUserTodos",
+        "total": {
+          "$ref": "data.userTodos.headers.x-total-count"
+        },
+        "filterFields": [
+          "id",
+          "userId",
+          "title",
+          "completed"
+        ],
+        "sortFields": [
+          "id",
+          "userId",
+          "title",
+          "completed"
+        ],
+        "search": true
+      },
+      "key": [
+        "id"
+      ],
+      "resource": "todos",
+      "requiredRouteParams": [
+        "id"
+      ],
+      "detail": {
+        "request": {
+          "url": "https://jsonplaceholder.typicode.com/todos/{{event.record.id}}"
+        },
+        "links": {
+          "user": {
+            "title": "Пользователь",
+            "target": "users",
+            "record": {
+              "id": {
+                "$ref": "event.record.userId"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

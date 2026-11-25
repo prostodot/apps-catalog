@@ -23,6 +23,13 @@
       "description": "Листайте список покемонов из PokéAPI.",
       "version": "1.0.0",
       "manifest": "manifests/pokeapi-pokemon-1.0.0.app.json"
+    },
+    {
+      "id": "jsonPlaceholderDemo",
+      "title": "JSONPlaceholder (демо)",
+      "description": "Открывайте тестовые публикации, комментарии, альбомы и задачи. API имитирует сохранение изменений.",
+      "version": "1.0.0",
+      "manifest": "manifests/jsonplaceholder-1.0.0.app.json"
     }
   ]
 }
