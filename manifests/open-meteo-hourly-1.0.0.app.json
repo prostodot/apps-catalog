@@ -1,0 +1,133 @@
+{
+  "id": "open_meteo_hourly",
+  "title": "Прогноз Open-Meteo",
+  "kind": "application",
+  "inputs": {
+    "latitude": {
+      "title": "Широта",
+      "schema": {
+        "type": "number",
+        "minimum": -90,
+        "maximum": 90
+      },
+      "default": 55.75
+    },
+    "longitude": {
+      "title": "Долгота",
+      "schema": {
+        "type": "number",
+        "minimum": -180,
+        "maximum": 180
+      },
+      "default": 37.62
+    }
+  },
+  "events": {},
+  "sources": {
+    "forecast": {
+      "adapter": "http",
+      "endpoint": "https://api.open-meteo.com/v1/forecast"
+    }
+  },
+  "actions": {
+    "forecast": {
+      "steps": [
+        {
+          "type": "load",
+          "source": "forecast",
+          "target": "forecast",
+          "params": {
+            "latitude": {
+              "$ref": "input.latitude"
+            },
+            "longitude": {
+              "$ref": "input.longitude"
+            },
+            "hourly": "temperature_2m",
+            "forecast_days": 2,
+            "timezone": "auto",
+            "current": "temperature_2m"
+          }
+        }
+      ]
+    }
+  },
+  "collections": {},
+  "pages": {
+    "forecast": {
+      "title": "Прогноз температуры",
+      "onEnter": "forecast",
+      "views": [
+        {
+          "id": "summary",
+          "type": "record",
+          "title": "Сейчас",
+          "value": {
+            "$ref": "data.forecast.current"
+          },
+          "fields": [
+            {
+              "name": "temperature_2m",
+              "title": "Температура",
+              "type": "number"
+            },
+            {
+              "name": "unit",
+              "title": "Единица измерения",
+              "type": "string",
+              "value": {
+                "$ref": "data.forecast.current_units.temperature_2m"
+              }
+            },
+            {
+              "name": "attribution",
+              "title": "Источник данных",
+              "type": "string",
+              "value": "Open-Meteo · CC BY 4.0",
+              "href": "https://open-meteo.com/en/licence"
+            }
+          ]
+        },
+        {
+          "id": "hourly",
+          "type": "record",
+          "title": "Почасовой прогноз",
+          "value": {
+            "$ref": "data.forecast.hourly"
+          },
+          "fields": [
+            {
+              "name": "timezone",
+              "title": "Часовой пояс",
+              "type": "string",
+              "value": {
+                "$ref": "data.forecast.timezone"
+              }
+            },
+            {
+              "name": "attribution",
+              "title": "Источник данных",
+              "type": "string",
+              "value": "Open-Meteo · CC BY 4.0",
+              "href": "https://open-meteo.com/en/licence"
+            }
+          ],
+          "timeSeries": {
+            "times": {
+              "$ref": "event.record.time"
+            },
+            "values": {
+              "$ref": "event.record.temperature_2m"
+            },
+            "unit": {
+              "$ref": "data.forecast.hourly_units.temperature_2m"
+            },
+            "timezone": {
+              "$ref": "data.forecast.timezone"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

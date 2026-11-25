@@ -9,6 +9,13 @@
       "description": "Создавайте заметки и храните их на этом устройстве.",
       "version": "1.1.0",
       "manifest": "manifests/notes-1.1.0.app.json"
+    },
+    {
+      "id": "open_meteo_hourly",
+      "title": "Прогноз Open-Meteo",
+      "description": "Смотрите текущую температуру и почасовой прогноз на два дня по заданным координатам.",
+      "version": "1.0.0",
+      "manifest": "manifests/open-meteo-hourly-1.0.0.app.json"
     }
   ]
 }
