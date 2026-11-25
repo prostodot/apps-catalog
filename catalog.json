@@ -30,6 +30,13 @@
       "description": "Открывайте тестовые публикации, комментарии, альбомы и задачи. API имитирует сохранение изменений.",
       "version": "1.0.0",
       "manifest": "manifests/jsonplaceholder-1.0.0.app.json"
+    },
+    {
+      "id": "github_issues_search",
+      "title": "Поиск задач GitHub",
+      "description": "Ищите задачи в публичных репозиториях GitHub и листайте результаты. По умолчанию показаны открытые задачи Open-Meteo.",
+      "version": "1.0.0",
+      "manifest": "manifests/github-issues-1.0.0.app.json"
     }
   ]
 }

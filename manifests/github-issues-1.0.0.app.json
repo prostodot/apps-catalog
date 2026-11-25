@@ -1,0 +1,88 @@
+{
+  "id": "github_issues_search",
+  "title": "Поиск задач GitHub",
+  "kind": "application",
+  "inputs": {
+    "query": {
+      "title": "Запрос GitHub",
+      "schema": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 256
+      },
+      "default": "repo:open-meteo/open-meteo is:issue is:open"
+    }
+  },
+  "events": {},
+  "sources": {
+    "issues": {
+      "adapter": "http",
+      "endpoint": "https://api.github.com/search/issues",
+      "responseHeaders": [
+        "link"
+      ]
+    }
+  },
+  "actions": {
+    "issues": {
+      "steps": [
+        {
+          "type": "load",
+          "source": "issues",
+          "target": "issues",
+          "params": {
+            "q": {
+              "$ref": "input.query"
+            },
+            "per_page": 30
+          }
+        }
+      ]
+    }
+  },
+  "collections": {
+    "issues": {
+      "title": "Задачи",
+      "value": {
+        "$ref": "data.issues.body.items"
+      },
+      "fields": [
+        {
+          "name": "id",
+          "title": "id",
+          "type": "number",
+          "required": true,
+          "readOnly": true
+        },
+        {
+          "name": "title",
+          "title": "Заголовок",
+          "type": "string",
+          "required": true,
+          "readOnly": true
+        },
+        {
+          "name": "state",
+          "title": "Состояние",
+          "type": "string",
+          "required": true,
+          "readOnly": true
+        },
+        {
+          "name": "labels",
+          "title": "Метки",
+          "type": "array",
+          "required": true,
+          "readOnly": true
+        }
+      ],
+      "key": [
+        "id"
+      ],
+      "load": "issues",
+      "pagination": {
+        "type": "link"
+      }
+    }
+  }
+}

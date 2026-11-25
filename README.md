@@ -1,12 +1,14 @@
 # Prosto Apps Catalog
 
-Официальный источник приложений для магазина Prosto Apps. В каталоге доступны локальные «Заметки», «Прогноз Open-Meteo», «Каталог покемонов» и «JSONPlaceholder (демо)». [Каталог JSON на GitHub Pages](https://prostodot.github.io/apps-catalog/catalog.json)
+Официальный источник приложений для магазина Prosto Apps. В каталоге доступны локальные «Заметки», «Прогноз Open-Meteo», «Каталог покемонов», «JSONPlaceholder (демо)» и «Поиск задач GitHub». [Каталог JSON на GitHub Pages](https://prostodot.github.io/apps-catalog/catalog.json)
 
 «Прогноз Open-Meteo» получает данные от Open-Meteo. [Некоммерческий API](https://open-meteo.com/en/terms) · [Лицензия данных прогноза CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 
 «Каталог покемонов» читает список из PokéAPI порциями по 20 записей. [Документация PokéAPI](https://pokeapi.co/v2#resource-lists-pagination-group)
 
 «JSONPlaceholder (демо)» показывает тестовые публикации, комментарии, альбомы и задачи. API имитирует сохранение изменений. [Документация JSONPlaceholder](https://jsonplaceholder.typicode.com/guide/)
+
+«Поиск задач GitHub» загружает результаты поиска по публичным репозиториям через GitHub REST API без токена. По умолчанию показаны открытые задачи Open-Meteo. [Документация поиска GitHub](https://docs.github.com/en/rest/search/search#search-issues-and-pull-requests)
 
 ## Публикация приложений
 
