@@ -16,6 +16,13 @@
       "description": "Смотрите текущую температуру и почасовой прогноз на два дня по заданным координатам.",
       "version": "1.0.0",
       "manifest": "manifests/open-meteo-hourly-1.0.0.app.json"
+    },
+    {
+      "id": "pokeapi_pokemon",
+      "title": "Каталог покемонов",
+      "description": "Листайте список покемонов из PokéAPI.",
+      "version": "1.0.0",
+      "manifest": "manifests/pokeapi-pokemon-1.0.0.app.json"
     }
   ]
 }

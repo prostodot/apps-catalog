@@ -1,0 +1,59 @@
+{
+  "id": "pokeapi_pokemon",
+  "title": "Каталог покемонов",
+  "kind": "application",
+  "inputs": {},
+  "events": {},
+  "sources": {
+    "pokemon": {
+      "adapter": "http",
+      "endpoint": "https://pokeapi.co/api/v2/pokemon/"
+    }
+  },
+  "actions": {
+    "pokemon": {
+      "steps": [
+        {
+          "type": "load",
+          "source": "pokemon",
+          "target": "pokemon",
+          "params": {
+            "limit": 20
+          }
+        }
+      ]
+    }
+  },
+  "collections": {
+    "pokemon": {
+      "title": "Покемоны",
+      "value": {
+        "$ref": "data.pokemon.results"
+      },
+      "fields": [
+        {
+          "name": "name",
+          "title": "Имя",
+          "type": "string",
+          "required": true,
+          "readOnly": true
+        },
+        {
+          "name": "url",
+          "title": "Адрес ресурса",
+          "type": "string",
+          "required": true,
+          "readOnly": true
+        }
+      ],
+      "key": [
+        "name"
+      ],
+      "load": "pokemon",
+      "pagination": {
+        "type": "next",
+        "path": "next"
+      }
+    }
+  }
+}
